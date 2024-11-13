@@ -38,6 +38,10 @@ button {
   font-weight: bold;
 }
 
+
+#qrfb {
+  text-align: center;
+}
 footer {
   text-align: center;
   padding: 10px 0;
@@ -46,7 +50,6 @@ footer {
   bottom: 0;
   width: 100%;
 }
-
 footer a {
   margin: 0 10px;
   text-decoration: none;
