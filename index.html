@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hero Level Calculator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Hero Level Calculator</h1>
+    <div>
+      <label for="heroName">Hero Name:</label>
+      <select id="heroName">
+        <option value="wasp">WASP/CERBERUS</option>
+        <option value="mole">MOLE/SERAPHIM</option>
+        <option value="leviathan">LEVIATHAN/SOLARIS</option>
+      </select>
+    </div>
+    <div>
+      <label for="fragments">Fragments:</label>
+      <input type="number" id="fragments">
+    </div>
+    <div>
+      <label for="currentLevel">Current Level:</label>
+      <select id="currentLevel">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+      </select>
+    </div>
+    <div class="level-buttons">
+      <button onclick="setLevel(1)">1</button>
+      <button onclick="setLevel(2)">2</button>
+      <button onclick="setLevel(3)">3</button>
+      <button onclick="setLevel(4)">4</button>
+      <button onclick="setLevel(5)">5</button>
+      <button onclick="setLevel(6)">6</button>
+      <button onclick="setLevel(7)">7</button>
+    </div>
+    <button onclick="calculateLevel()">Calculate</button>
+    <button onclick="showDetails()">Details</button>
+    <div id="result"></div>
+    <div id="levelDetails"></div>
+    <nav id="levelNav"></nav>
+    <div id="heroList"></div>
+    <div id="details"></div>
+  </div>
+  <footer>
+    <a href="https://www.facebook.com/nguoilang.tham.77">Facebook</a>
+    <a href="#">Zalo</a>
+    <img src="facebook_qr.png" alt="Facebook QR Code">
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
