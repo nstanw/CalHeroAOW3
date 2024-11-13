@@ -55,3 +55,28 @@ footer a {
   text-decoration: none;
   color: #333;
 }
+
+.qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center buttons horizontally */
+  gap: 10px; /* Add space between buttons */
+}
+
+.qr button {
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+  /* width: 200px; Adjust button width as needed */
+  display: block; /* Make buttons block-level elements */
+  width: 100%; /* Make buttons fill their container width */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.qr img {
+  max-width: 100%;
+  height: auto;
+}
