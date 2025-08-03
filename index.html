@@ -1,80 +1,167 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
   <head>
-    <title>Hero Level Calculator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Level Calculator - Age of Wonders 3</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚔️</text></svg>">
   </head>
   <body>
     <div class="container">
-      <h1>Hero Level Calculator</h1>
-      <div>
-        <label for="heroName">Hero Name:</label>
-        <select id="heroName">
-          <option value="wasp">WASP/CERBERUS</option>
-          <option value="wolverine">WOLVERINE/BEHOLDER</option>
-          <option value="mole">MOLE/SERAPHIM</option>
-          <option value="salamander">SALAMANDER/PSION</option>
-          <option value="leviathan">LEVIATHAN/SOLARIS</option>
-        </select>
+      <div class="visitor-stats">
+        <div class="stats-card">
+          <div class="stat-item">
+            <span class="stat-icon">👥</span>
+            <div class="stat-info">
+              <div class="stat-number" id="onlineCount">0</div>
+              <div class="stat-label">Đang online</div>
+            </div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">📊</span>
+            <div class="stat-info">
+              <div class="stat-number" id="totalVisits">0</div>
+              <div class="stat-label">Lượt truy cập</div>
+            </div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">🕒</span>
+            <div class="stat-info">
+              <div class="stat-number" id="lastUpdate">--:--</div>
+              <div class="stat-label">Cập nhật</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <label for="fragments">Fragments:</label>
-        <input type="number" id="fragments" />
+      
+      <h1>🏆 Hero Level Calculator</h1>
+      <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 1.1em;">
+        Tính toán level hero cho Age of Wonders 3
+      </p>
+      
+      <div class="input-section">
+        <div class="input-group">
+          <label for="heroName">🦸‍♂️ Chọn Hero:</label>
+          <select id="heroName">
+            <option value="wasp">⚡ WASP/CERBERUS</option>
+            <option value="wolverine">🐺 WOLVERINE/BEHOLDER</option>
+            <option value="mole">🔮 MOLE/SERAPHIM</option>
+            <option value="salamander">🔥 SALAMANDER/PSION</option>
+            <option value="leviathan">🌊 LEVIATHAN/SOLARIS</option>
+          </select>
+        </div>
+        
+        <div class="input-group">
+          <label for="fragments">💎 Số Fragments hiện có:</label>
+          <input type="number" id="fragments" placeholder="Nhập số fragments..." min="0" />
+        </div>
+        
+        <div class="input-group">
+          <label for="currentLevel">📊 Level hiện tại:</label>
+          <select id="currentLevel">
+            <option value="1">Level 1</option>
+            <option value="2">Level 2</option>
+            <option value="3">Level 3</option>
+            <option value="4">Level 4</option>
+            <option value="5">Level 5</option>
+            <option value="6">Level 6</option>
+            <option value="7">Level 7</option>
+            <option value="8">Level 8</option>
+            <option value="9">Level 9</option>
+            <option value="10">Level 10</option>
+            <option value="11">Level 11</option>
+            <option value="12">Level 12</option>
+          </select>
+        </div>
       </div>
-      <div>
-        <label for="currentLevel">Current Level:</label>
-        <select id="currentLevel">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-        </select>
+
+      <div style="text-align: center; margin: 20px 0;">
+        <p style="color: #666; margin-bottom: 10px;">⚡ Chọn nhanh level:</p>
+        <div class="level-buttons">
+          <button onclick="setLevel(1)" title="Set Level 1">1</button>
+          <button onclick="setLevel(2)" title="Set Level 2">2</button>
+          <button onclick="setLevel(3)" title="Set Level 3">3</button>
+          <button onclick="setLevel(4)" title="Set Level 4">4</button>
+          <button onclick="setLevel(5)" title="Set Level 5">5</button>
+          <button onclick="setLevel(6)" title="Set Level 6">6</button>
+          <button onclick="setLevel(7)" title="Set Level 7">7</button>
+        </div>
       </div>
-      <div class="level-buttons">
-        <button onclick="setLevel(1)">1</button>
-        <button onclick="setLevel(2)">2</button>
-        <button onclick="setLevel(3)">3</button>
-        <button onclick="setLevel(4)">4</button>
-        <button onclick="setLevel(5)">5</button>
-        <button onclick="setLevel(6)">6</button>
-        <button onclick="setLevel(7)">7</button>
+
+      <div class="action-buttons">
+        <button class="btn btn-primary" onclick="calculateLevel()">
+          🧮 Tính toán
+        </button>
+        <button class="btn btn-secondary" onclick="showDetails()">
+          📋 Chi tiết Heroes
+        </button>
       </div>
-      <button onclick="calculateLevel()">Calculate</button>
-      <button onclick="showDetails()">Details</button>
-      <div id="result"></div>
-      <div id="levelDetails"></div>
-      <nav id="levelNav"></nav>
-      <div id="heroList"></div>
-      <div id="details"></div>
+
+      <div class="results-section">
+        <div class="result-card" id="resultCard" style="display: none;">
+          <h3>📊 Kết quả tính toán</h3>
+          <div id="result"></div>
+        </div>
+        
+        <div class="result-card" id="levelDetailsCard" style="display: none;">
+          <h3>📈 Chi tiết từng level</h3>
+          <div id="levelDetails"></div>
+        </div>
+        
+        <div class="result-card" id="levelNavCard" style="display: none;">
+          <h3>🗺️ Bảng fragments theo level</h3>
+          <nav id="levelNav"></nav>
+        </div>
+        
+        <div class="result-card" id="heroListCard" style="display: none;">
+          <h3>👥 Danh sách Heroes</h3>
+          <div id="heroList"></div>
+        </div>
+        
+        <div class="result-card" id="detailsCard" style="display: none;">
+          <h3>📖 Thông tin chi tiết tất cả Heroes</h3>
+          <div id="details"></div>
+        </div>
+      </div>
     </div>
+
+    <div class="contact-section">
+      <h3 class="contact-title">📞 Liên hệ hỗ trợ</h3>
+      <p class="contact-subtitle">Cần hỗ trợ? Hãy liên hệ với chúng tôi qua các kênh sau:</p>
+    </div>
+
     <div class="qr">
       <a href="https://www.facebook.com/nguoilang.tham.77" target="_blank">
-        <button>
-          <img src="qrcode_www.facebook.com.png" alt="Facebook QR Code" />
-          <br>
-          Facebook
-        </button>
+        <div class="qr-card facebook">
+          <img src="qrcode_www.facebook.com.png" alt="Facebook QR Code" class="qr-icon" />
+          <div class="qr-title">📘 Facebook</div>
+          <div class="qr-subtitle">Nhắn tin trực tiếp</div>
+          <button class="qr-button" title="Liên hệ qua Facebook">
+            Kết nối Facebook
+          </button>
+        </div>
       </a>
+      
       <a href="https://zalo.me/0334694929" target="_blank">
-        <button>
-          <img src="ZALO.jpg" alt="Zalo QR Code" />
-          <br>
-          Zalo
-        </button>
+        <div class="qr-card zalo">
+          <img src="ZALO.jpg" alt="Zalo QR Code" class="qr-icon" />
+          <div class="qr-title">💬 Zalo</div>
+          <div class="qr-subtitle">Chat nhanh chóng</div>
+          <button class="qr-button" title="Liên hệ qua Zalo">
+            Kết nối Zalo
+          </button>
+        </div>
       </a>
     </div>
+
     <footer>
-      <a href="https://www.facebook.com/nguoilang.tham.77">Facebook</a>
-      <a href="https://zalo.me/0334694929">Zalo</a>
+      <p>© 2024 Hero Calculator | Liên hệ: 
+        <a href="https://www.facebook.com/nguoilang.tham.77">Facebook</a> | 
+        <a href="https://zalo.me/0334694929">Zalo</a>
+      </p>
     </footer>
+    
     <script src="script.js"></script>
   </body>
 </html>
